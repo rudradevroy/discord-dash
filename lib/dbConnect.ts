@@ -15,9 +15,10 @@ async function dbConnect() {
   mongoose.connection.on("connected", () => {
     console.log("connected to mongo db");
   });
-  // mongoose.connection.on("error", (err) => {
-  //   console.log(`db connection problem`, err.message);
-  // });
+  mongoose.connection.on("error", (err) => {
+    console.log(`db connection problem`, err.message);
+    });
+    
   return mongoose.connect(MONGODB_URI as string, {});
 }
 
