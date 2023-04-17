@@ -1,3 +1,5 @@
+// for integrating with MongoDB
+
 import { MongoClient } from 'mongodb'
 
 

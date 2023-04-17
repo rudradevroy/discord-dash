@@ -1,3 +1,5 @@
+// check if we are connecting to mongo DB
+
 import { NextRequest, NextResponse } from "next/server";
 import clientPromise from "../../../../lib/mongodb";
 
