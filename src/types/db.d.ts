@@ -1,3 +1,5 @@
+//as per doc 
+
 import type { DefaultUser } from 'next-auth';
 
 interface User{
