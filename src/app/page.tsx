@@ -1,11 +1,8 @@
-'use client'
 import { FC } from 'react';
 import Button from '@/components/ui/Button';
-import dbConnect from '../../lib/dbConnect';
-import { NextRequest } from 'next/server';
 
 
-/* interface pageProps {}
+interface pageProps {}
 
 const Page: FC<pageProps> = ({}) => {
   return (
@@ -17,11 +14,5 @@ const Page: FC<pageProps> = ({}) => {
   );
 };
 
-export default Page; */
+export default Page;
 
-export default async function Home(request: NextRequest) {
-  await dbConnect()
-
-  
-
-}

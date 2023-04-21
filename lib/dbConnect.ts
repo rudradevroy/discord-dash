@@ -11,14 +11,14 @@ async function dbConnect() {
   // check if we have a connection to the database or if it's currently
   // connecting or disconnecting (readyState 1, 2 and 3)
   if (mongoose.connection.readyState >= 1) {
-    console.log("DB connected");
+    console.log("DB connected mongoose");
     return;
   }
   mongoose.connection.on("connected", () => {
-    console.log("connected to mongo db");
+    console.log("connected to mongo db through mongoose");
   });
   mongoose.connection.on("error", (err) => {
-    console.log(`db connection problem`, err.message);
+    console.log(`db connection problem mongoose`, err.message);
     });
     
   return mongoose.connect(MONGODB_URI as string, {});

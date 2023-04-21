@@ -11,7 +11,7 @@ type ResponseData = {
   async function GET(request: NextRequest) {
     try {
         await clientPromise
-        return NextResponse.json({message: "Connection established"});
+        return NextResponse.json({message: "Connection established through MongoDB GET"});
     } catch (error) {
         return NextResponse.json({message: "Connection failed"});
     }

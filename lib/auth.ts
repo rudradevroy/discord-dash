@@ -2,9 +2,9 @@
 
 import { NextAuthOptions } from "next-auth";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import { Db } from "mongodb";
 import clientPromise from "./mongodb";
 import GoogleProvider from 'next-auth/providers/google'
+import NextAuth from "next-auth/next";
 
 function getGoogleCredentials() {
     const clientId = process.env.GOOGLE_CLIENT_ID
@@ -35,18 +35,22 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     callbacks: {
-        session: async ({ session, token }) => {
-            if (session?.user) {
-              session.user.id = token.uid;
-            }
-            return session;
+        //@ts-ignore
+        async session({ session, token }) {
+          console.log('session', session)
+          console.log('token:', token)
+          const newSession = {expires: session.expires, user: token.user}
+          return newSession
         },
-        jwt: async ({ user, token }) => {
-            if (user) {
-              token.uid = user.id;
-            }
-            return token;
-          },
+        jwt({ account, token, user }) {
+          if (user) {
+            const newToken = {...token, user}
+            return newToken
+          }
+    
+          return token
         },
-            
-        }
+      }
+    }
+    
+    export default NextAuth(authOptions)
